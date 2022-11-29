@@ -1,5 +1,6 @@
 package com.example.android_project;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -40,4 +41,69 @@ public class ShoppingDb extends SQLiteOpenHelper {
 
         onCreate(db);
     }
+
+    public void addNewCustomer(String name, String pass, String gender, String birthdate, String job) {
+        ContentValues row = new ContentValues();
+        row.put("UserName", name);
+        row.put("Password", pass);
+        row.put("gender", gender);
+        row.put("BirthDate", birthdate);
+        row.put("Job", job);
+
+        Project_db = getWritableDatabase();
+        Project_db.insert("Customers", null, row);
+        Project_db.close();
+    }
+
+    public void addNewOrder(String ordDate ,String address ,Integer customerId)
+    {
+        ContentValues row = new ContentValues();
+        row.put("OrderDate",ordDate);
+        row.put("Address",address);
+        row.put("CustId",customerId);
+
+        Project_db =getWritableDatabase();
+        Project_db.insert("Orders",null,row);
+        Project_db.close();
+    }
+
+    public void addOrderDetails(Integer ordId ,Integer prodId ,Integer Qtity)
+    {
+        ContentValues row = new ContentValues();
+        row.put("OrderId",ordId);
+        row.put("ProdId",prodId);
+        row.put("Quantity",Qtity);
+
+        Project_db =getWritableDatabase();
+        Project_db.insert("OrderDetails",null,row);
+        Project_db.close();
+    }
+
+    public void addNewProduct(String name , Integer price , Integer quantity,Integer categId)
+    {
+        ContentValues row = new ContentValues();
+        row.put("ProductName",name);
+        row.put("Price",price);
+        row.put("Quantity",quantity);
+        row.put("CategoryId",categId);
+
+        Project_db=getWritableDatabase();
+        Project_db.insert("Products",null ,row);
+        Project_db.close();
+    }
+    public void addCategory(String name)
+    {
+        ContentValues row = new ContentValues();
+        row.put("CatName",name);
+
+        Project_db=getWritableDatabase();
+        Project_db.insert("Categories",null,row);
+        Project_db.close();
+    }
+
+
+
+
+
+
 }
