@@ -2,6 +2,7 @@ package com.example.android_project;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -18,7 +19,7 @@ public class ShoppingDb extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table Customers(CustId integer primary key autoIncrement not null  ,UserName text not null ,Password text not null , gender text not null ,BirthDate text not null ,Job text not null)");
+        db.execSQL("create table Customers(CustId integer primary key autoIncrement not null  ,CustName text not null,UserName text not null ,Password text not null , gender text not null ,BirthDate text not null ,Job text not null)");
 
         db.execSQL("create table Orders(OrderId integer primary key autoIncrement not null,OrderDate text not null ,Address text not null ,CustId integer not null,foreign key(CustId) references Customers(CustId))");
 
@@ -42,8 +43,9 @@ public class ShoppingDb extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addNewCustomer(String name, String pass, String gender, String birthdate, String job) {
+    public long addNewCustomer(String CustomerName,String name, String pass, String gender, String birthdate, String job) {
         ContentValues row = new ContentValues();
+        row.put("CustName", CustomerName);
         row.put("UserName", name);
         row.put("Password", pass);
         row.put("gender", gender);
@@ -51,10 +53,23 @@ public class ShoppingDb extends SQLiteOpenHelper {
         row.put("Job", job);
 
         Project_db = getWritableDatabase();
-        Project_db.insert("Customers", null, row);
+        long insertResult =Project_db.insert("Customers", null, row);
         Project_db.close();
-    }
+        return  insertResult;
 
+    }
+    public Cursor getCustomersData()
+    {
+        Project_db=getReadableDatabase();
+        String[]customers ={"CustId","CustName","UserName","Password","gender","BirthDate","Job"};
+        Cursor cr =Project_db.query("Customers",customers,null,null,null,null,null);
+        if(cr!=null)
+        {
+            cr.moveToFirst();
+        }
+        Project_db.close();
+        return  cr;
+    }
     public void addNewOrder(String ordDate ,String address ,Integer customerId)
     {
         ContentValues row = new ContentValues();
