@@ -1,4 +1,4 @@
-package com.example.android_project;
+package com.example.android_project.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.android_project.R;
+import com.example.android_project.DataBase.ShoppingDb;
 
 public class RegisterActivity extends AppCompatActivity {
 

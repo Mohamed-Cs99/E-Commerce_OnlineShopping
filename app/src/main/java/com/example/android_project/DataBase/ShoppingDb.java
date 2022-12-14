@@ -1,4 +1,4 @@
-package com.example.android_project;
+package com.example.android_project.DataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -58,18 +58,21 @@ public class ShoppingDb extends SQLiteOpenHelper {
         return  insertResult;
 
     }
-    public Cursor getCustomersData()
+
+    public Cursor LogIN(String userName ,String password)
     {
-        Project_db=getReadableDatabase();
-        String[]customers ={"CustId","CustName","UserName","Password","gender","BirthDate","Job"};
-        Cursor cr =Project_db.query("Customers",customers,null,null,null,null,null);
+        Project_db = getReadableDatabase() ;
+        String[]args ={userName ,password};
+        Cursor cr=Project_db.rawQuery("select CustId  from Customers where UserName=? and Password=?",args);
+
         if(cr!=null)
         {
             cr.moveToFirst();
         }
         Project_db.close();
-        return  cr;
+        return  cr ;
     }
+
     public void addNewOrder(String ordDate ,String address ,Integer customerId)
     {
         ContentValues row = new ContentValues();
