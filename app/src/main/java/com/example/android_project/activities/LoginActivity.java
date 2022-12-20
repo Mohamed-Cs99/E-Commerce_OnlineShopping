@@ -20,6 +20,11 @@ import com.example.android_project.R;
 public class LoginActivity extends AppCompatActivity {
     EditText userName, Password;
     ShoppingDb obj;
+    TextView sUp,forget ;
+    CheckBox remember;
+    boolean logIn;
+    SharedPreferences SharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +32,24 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         userName = (EditText) findViewById(R.id.inputCustomerName);
         Password = (EditText) findViewById(R.id.pass);
-        TextView sUp = (TextView) findViewById(R.id.textviewSignUp);
-        CheckBox remember = (CheckBox) findViewById(R.id.checkBox2);
-        SharedPreferences SharedPreferences = getSharedPreferences("Remembering", MODE_PRIVATE);
-        SharedPreferences.Editor editor;
-        Button lgIn =(Button)findViewById(R.id.logInBtn);
+        sUp = (TextView) findViewById(R.id.textviewSignUp);
+        forget= (TextView)findViewById(R.id.forget)  ;
+
+        remember = (CheckBox) findViewById(R.id.checkBox2);
+        SharedPreferences = getSharedPreferences("Remembering", MODE_PRIVATE);
+
+        Button lgIn = (Button) findViewById(R.id.logInBtn);
         obj = new ShoppingDb(this);
 
+        forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it  =new Intent(LoginActivity.this,PasswordRecovery.class);
+                startActivity(it);
+
+            }
+        });
+        LogInCheck();
         sUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,11 +70,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void login() {
         String usern = userName.getText().toString();
         String pass = Password.getText().toString();
-        Cursor lgin_cr = obj.LogIN(usern,pass);
-        if (usern.equals("admin") &&pass.equals("admin")) {
+        Cursor lgin_cr = obj.LogIN(usern, pass);
+        if (usern.equals("admin") && pass.equals("admin")) {
 
 
-            Intent it = new Intent(LoginActivity.this,UploadProduct.class);
+            Intent it = new Intent(LoginActivity.this, UploadProduct.class);
             startActivity(it);
             finish();
         } else {
@@ -67,6 +83,9 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Invalid UserName Or Password", Toast.LENGTH_LONG).show();
 
             } else {
+                if (remember.isChecked()) {
+                    keepLogIn(usern, pass);
+                }
                 Toast.makeText(getApplicationContext(), "Successfully Log in ", Toast.LENGTH_LONG).show();
                 Intent it = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(it);
@@ -76,4 +95,25 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+    protected void LogInCheck() {
+        logIn = SharedPreferences.getBoolean("login", false);
+        if (logIn) {
+            Intent it = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(it);
+            finish();
+        }
+    }
+
+    protected void keepLogIn(String userName, String Pass) {
+
+        editor = SharedPreferences.edit();
+        editor.putString("UserName", userName);
+        editor.putString("Password", Pass);
+        editor.putBoolean("login", true);
+        editor.apply();
+
+
+    }
+
 }

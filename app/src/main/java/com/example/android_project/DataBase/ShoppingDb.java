@@ -72,6 +72,19 @@ public class ShoppingDb extends SQLiteOpenHelper {
         Project_db.close();
         return  cr ;
     }
+    public String getPassword(String Email)
+    {
+     Project_db=getReadableDatabase() ;
+     String[]args={Email};
+     Cursor cr = Project_db.rawQuery("select Password from Customers where UserName=?",args) ;
+        if(cr!=null)
+        {
+            cr.moveToFirst();
+        }
+        Project_db.close();
+        return  cr.getString(0);
+    }
+
 
     public void addNewOrder(String ordDate ,String address ,Integer customerId)
     {
@@ -118,7 +131,6 @@ public class ShoppingDb extends SQLiteOpenHelper {
         Project_db.insert("Categories",null,row);
         Project_db.close();
     }
-
 
 
 
