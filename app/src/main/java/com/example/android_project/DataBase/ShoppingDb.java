@@ -110,7 +110,7 @@ public class ShoppingDb extends SQLiteOpenHelper {
         Project_db.close();
     }
 
-    public void addNewProduct(String name , Integer price , Integer quantity,Integer categId)
+    public long addNewProduct(String name , Integer price , Integer quantity,Integer categId)
     {
         ContentValues row = new ContentValues();
         row.put("ProductName",name);
@@ -119,17 +119,19 @@ public class ShoppingDb extends SQLiteOpenHelper {
         row.put("CategoryId",categId);
 
         Project_db=getWritableDatabase();
-        Project_db.insert("Products",null ,row);
+        long insertRes = Project_db.insert("Products",null ,row);
         Project_db.close();
+        return  insertRes ;
     }
-    public void addCategory(String name)
+    public long addCategory(String name)
     {
         ContentValues row = new ContentValues();
         row.put("CatName",name);
 
         Project_db=getWritableDatabase();
-        Project_db.insert("Categories",null,row);
+        long InsertRes =Project_db.insert("Categories",null,row);
         Project_db.close();
+        return  InsertRes ;
     }
 
 

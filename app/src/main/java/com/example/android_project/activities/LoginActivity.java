@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         if (usern.equals("admin") && pass.equals("admin")) {
 
 
-            Intent it = new Intent(LoginActivity.this, UploadProduct.class);
+            Intent it = new Intent(LoginActivity.this, Categories.class);
             startActivity(it);
             finish();
         } else {
