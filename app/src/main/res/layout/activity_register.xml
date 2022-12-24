@@ -7,6 +7,35 @@
     android:background="@drawable/bb"
     tools:context=".activities.RegisterActivity">
 
+    <EditText
+        android:id="@+id/year"
+        android:layout_width="62dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Year"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintStart_toEndOf="@+id/month"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <EditText
+        android:id="@+id/month"
+        android:layout_width="62dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Month"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/birthdate"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
     <TextView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
@@ -56,7 +85,7 @@
         android:drawableLeft="@drawable/ic_baseline_email_24"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="UserName"
+        android:hint="Email"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingLeft="20dp"
@@ -93,42 +122,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputUserName" />
 
-    <EditText
-        android:id="@+id/PassConfirm"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/ic_baseline_security_24"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pass" />
 
-    <EditText
+    <TextView
         android:id="@+id/gender"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="127dp"
+        android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/input_bg"
+
         android:drawableLeft="@drawable/ic_baseline_person_24"
 
         android:drawablePadding="10dp"
-
         android:ems="10"
         android:hint="Gender"
         android:inputType="textPersonName"
@@ -139,46 +145,75 @@
         android:paddingBottom="10dp"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PassConfirm" />
+        app:layout_constraintTop_toBottomOf="@+id/pass" />
 
-    <EditText
-        android:id="@+id/birthdate"
-        android:layout_width="0dp"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#E4DBDB"
+        android:entries="@array/gender"
+        android:padding="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/birthdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gender"
+        app:layout_constraintTop_toBottomOf="@+id/pass"
+        app:layout_constraintVertical_bias="0.533" />
+
+    <TextView
+        android:id="@+id/birthdate"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@drawable/ic_baseline_date_range_24"
         android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="Enter birthDate"
-        android:inputType="textPersonName"
+
+        android:gravity="center"
         android:minHeight="48dp"
+
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        android:textColorHint="@color/white"
+        android:text="BirthDate"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.004"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gender" />
+
+    <EditText
+        android:id="@+id/day"
+        android:layout_width="62dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Day"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/month"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toEndOf="@+id/birthdate"
+        app:layout_constraintTop_toBottomOf="@+id/pass" />
 
     <EditText
         android:id="@+id/job"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:autoText="false"
         android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/ic_baseline_work_24"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Enter Your Job"
+        android:hint="Job title "
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingLeft="20dp"
@@ -187,33 +222,18 @@
         android:paddingBottom="10dp"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthdate" />
 
     <Button
         android:id="@+id/regbtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/btn_bg"
-        android:text="Register "
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/job" />
-
-    <TextView
-        android:id="@+id/regtxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Already Have Account?"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:text="Sign Up"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regbtn" />
+        app:layout_constraintTop_toBottomOf="@+id/job" />
 </androidx.constraintlayout.widget.ConstraintLayout>

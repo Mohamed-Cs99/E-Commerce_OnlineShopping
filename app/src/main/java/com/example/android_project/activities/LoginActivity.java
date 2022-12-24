@@ -20,8 +20,9 @@ import com.example.android_project.R;
 public class LoginActivity extends AppCompatActivity {
     EditText userName, Password;
     ShoppingDb obj;
-    TextView sUp,forget ;
+    TextView sUp, forget;
     CheckBox remember;
+    Button lgIn;
     boolean logIn;
     SharedPreferences SharedPreferences;
     SharedPreferences.Editor editor;
@@ -33,23 +34,22 @@ public class LoginActivity extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.inputCustomerName);
         Password = (EditText) findViewById(R.id.pass);
         sUp = (TextView) findViewById(R.id.textviewSignUp);
-        forget= (TextView)findViewById(R.id.forget)  ;
-
+        forget = (TextView) findViewById(R.id.forget);
         remember = (CheckBox) findViewById(R.id.checkBox2);
         SharedPreferences = getSharedPreferences("Remembering", MODE_PRIVATE);
-
-        Button lgIn = (Button) findViewById(R.id.logInBtn);
+        lgIn = (Button) findViewById(R.id.logInBtn);
         obj = new ShoppingDb(this);
+
+        // Function check if User Login Befor
+        LogInCheck();
 
         forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it  =new Intent(LoginActivity.this,PasswordRecovery.class);
+                Intent it = new Intent(LoginActivity.this, PasswordRecovery.class);
                 startActivity(it);
-
             }
         });
-        LogInCheck();
         sUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,11 +70,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void login() {
         String usern = userName.getText().toString();
         String pass = Password.getText().toString();
-        Cursor lgin_cr = obj.LogIN(usern, pass);
+        Cursor lgin_cr = obj.LogIn(usern, pass);
         if (usern.equals("admin") && pass.equals("admin")) {
 
 
-            Intent it = new Intent(LoginActivity.this, Categories.class);
+            Intent it = new Intent(LoginActivity.this, Product.class);
             startActivity(it);
             finish();
         } else {
@@ -106,14 +106,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     protected void keepLogIn(String userName, String Pass) {
-
         editor = SharedPreferences.edit();
         editor.putString("UserName", userName);
         editor.putString("Password", Pass);
         editor.putBoolean("login", true);
         editor.apply();
-
-
     }
-
 }

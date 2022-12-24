@@ -34,7 +34,7 @@ public class PasswordRecovery extends AppCompatActivity {
              String Pass =obj.getPassword(email) ;
              if(Pass==null)
              {
-                 Toast.makeText(getApplicationContext(),"Check Email ",Toast.LENGTH_LONG).show();
+                 Toast.makeText(getApplicationContext()," Email NOt Found ",Toast.LENGTH_LONG).show();
              }
              else
              {

@@ -20,16 +20,16 @@
 
     <EditText
         android:id="@+id/ProuductName"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+
         android:layout_marginTop="20dp"
         android:hint="Product Name "
         android:padding="10dp" />
 
     <EditText
         android:id="@+id/ProductPrice"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
@@ -38,21 +38,27 @@
 
     <EditText
         android:id="@+id/ProductQuantity"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:hint="Quantity  "
         android:padding="10dp" />
 
-    <EditText
-        android:id="@+id/ProuductCategory"
+    <TextView
+        android:id="@+id/categoryId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:hint="Category ID"
-        android:padding="10dp" />
+        android:text="Category"
+        android:padding="15dp" />
+
+    <Spinner
+        android:id="@+id/categorySpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        />
 
     <Button
         android:id="@+id/nwProductBtn"
@@ -61,5 +67,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="Add New Product" />
+        android:text="Add New Product"
+        />
 </LinearLayout>
